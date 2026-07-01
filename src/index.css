@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif-display: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --font-serif-body: "EB Garamond", Georgia, serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  
+  --color-paper: #F9F7F2;
+  --color-paper-dark: #E5E1D8;
+  --color-ink: #1A1A1A;
+  --color-ink-muted: #5A5A5A;
+  --color-vintage-gold: #8B7355;
+  --color-vintage-red: #8B2513;
+  --color-vintage-teal: #2D4A43;
+}
+
+@layer utilities {
+  .vintage-double-border {
+    border: 3px double currentColor;
+  }
+  
+  .vintage-border-pattern {
+    border-image: repeating-linear-gradient(45deg, currentColor, currentColor 4px, transparent 4px, transparent 8px) 5;
+    border-width: 4px;
+    border-style: solid;
+  }
+  
+  .dropcap::first-letter {
+    font-family: "Cormorant Garamond", Georgia, serif;
+    font-size: 3.5rem;
+    line-height: 0.85;
+    float: left;
+    margin-right: 0.5rem;
+    margin-top: 0.15rem;
+    font-weight: bold;
+    color: var(--color-vintage-red);
+  }
+  
+  .writing-mode-vertical {
+    writing-mode: vertical-rl;
+  }
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-serif-body);
+}
+
+/* Custom scrollbar matching traditional ink aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-paper-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-vintage-gold);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-vintage-red);
+}
