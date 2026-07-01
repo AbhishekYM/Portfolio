@@ -1,65 +1,130 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-serif-display: "Cormorant Garamond", "EB Garamond", Georgia, serif;
-  --font-serif-body: "EB Garamond", Georgia, serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif-display: "Space Grotesk", sans-serif;
+  --font-serif-body: "Plus Jakarta Sans", sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
   
-  --color-paper: #F9F7F2;
-  --color-paper-dark: #E5E1D8;
-  --color-ink: #1A1A1A;
-  --color-ink-muted: #5A5A5A;
-  --color-vintage-gold: #8B7355;
-  --color-vintage-red: #8B2513;
-  --color-vintage-teal: #2D4A43;
+  --color-paper: #F9F8F4;
+  --color-paper-dark: #EAE6DB;
+  --color-ink: #111111;
+  --color-ink-muted: #3D3D3D;
+  --color-vintage-red: #FF4A5A;
+  --color-vintage-teal: #00D2C4;
+  --color-vintage-gold: #FFB300;
+  
+  --color-robot-yellow: #FFF176;
+  --color-robot-blue: #80DEEA;
+  --color-robot-green: #A5D6A7;
+  --color-robot-purple: #D1C4E9;
+  --color-robot-orange: #FFCC80;
+  --color-robot-pink: #F8BBD0;
 }
 
 @layer utilities {
-  .vintage-double-border {
-    border: 3px double currentColor;
+  .toy-border {
+    border: 3px solid #111111;
   }
   
-  .vintage-border-pattern {
-    border-image: repeating-linear-gradient(45deg, currentColor, currentColor 4px, transparent 4px, transparent 8px) 5;
-    border-width: 4px;
-    border-style: solid;
+  .toy-shadow-sm {
+    box-shadow: 2px 2px 0px 0px #111111;
   }
   
-  .dropcap::first-letter {
-    font-family: "Cormorant Garamond", Georgia, serif;
-    font-size: 3.5rem;
-    line-height: 0.85;
-    float: left;
-    margin-right: 0.5rem;
-    margin-top: 0.15rem;
-    font-weight: bold;
-    color: var(--color-vintage-red);
+  .toy-shadow {
+    box-shadow: 4px 4px 0px 0px #111111;
   }
   
-  .writing-mode-vertical {
-    writing-mode: vertical-rl;
+  .toy-shadow-lg {
+    box-shadow: 8px 8px 0px 0px #111111;
+  }
+  
+  .toy-shadow-active {
+    box-shadow: 1px 1px 0px 0px #111111;
+    transform: translate(3px, 3px);
+  }
+  
+  .grid-bg {
+    background-size: 24px 24px;
+    background-image: linear-gradient(to right, rgba(17, 17, 17, 0.04) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(17, 17, 17, 0.04) 1px, transparent 1px);
   }
 }
 
 body {
   background-color: var(--color-paper);
   color: var(--color-ink);
-  font-family: var(--font-serif-body);
+  font-family: var(--font-sans);
+  background-size: 24px 24px;
+  background-image: linear-gradient(to right, rgba(17, 17, 17, 0.03) 1px, transparent 1px),
+                    linear-gradient(to bottom, rgba(17, 17, 17, 0.03) 1px, transparent 1px);
 }
 
-/* Custom scrollbar matching traditional ink aesthetic */
+/* Customized fun animations */
+@keyframes eyeBlink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+@keyframes floatRobot {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+@keyframes spinGear {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes antennaWave {
+  0%, 100% { transform: rotate(-5deg); }
+  50% { transform: rotate(15deg); }
+}
+
+@keyframes scanningBeam {
+  0% { top: 0%; opacity: 0.1; }
+  50% { opacity: 0.8; }
+  100% { top: 100%; opacity: 0.1; }
+}
+
+.animate-blink {
+  animation: eyeBlink 4s infinite;
+}
+
+.animate-float-robot {
+  animation: floatRobot 3.5s ease-in-out infinite;
+}
+
+.animate-spin-gear-cw {
+  animation: spinGear 8s linear infinite;
+}
+
+.animate-spin-gear-ccw {
+  animation: spinGear 12s linear infinite reverse;
+}
+
+.animate-antenna {
+  animation: antennaWave 2.5s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+.scan-beam {
+  animation: scanningBeam 2s linear infinite;
+}
+
+/* Custom scrollbar matching robotic arcade look */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 12px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-paper-dark);
+  border-left: 3px solid var(--color-ink);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--color-vintage-gold);
-  border-radius: 2px;
+  background: var(--color-robot-blue);
+  border: 3px solid var(--color-ink);
+  border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-vintage-red);
